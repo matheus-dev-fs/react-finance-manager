@@ -23,3 +23,10 @@ export const filterListByMonth = (list: ItemListType, dateTarget: string): ItemL
         item.date.getFullYear() === year && (item.date.getMonth() + 1) === month
     );
 };
+
+export const formatDate = (date: Date): string => {
+    const year: string = date.getFullYear().toString();
+    const month: string = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day: string = date.getDate().toString().padStart(2, '0');
+    return `${day}/${month}/${year}`;
+};

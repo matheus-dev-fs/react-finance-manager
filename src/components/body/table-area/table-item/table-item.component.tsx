@@ -1,6 +1,7 @@
 import { JSX } from 'react';
 import * as S from './table-item.styles';
 import { IItem } from '../../../../interfaces/item.interface';
+import { formatDate } from '../../../../helpers/date-filter.helper';
 
 type Props = {
     item: IItem;
@@ -9,10 +10,10 @@ type Props = {
 export const TableItem = ({ item }: Props): JSX.Element => {
     return (
         <S.Row>
-            <S.Column>{item.date.toLocaleDateString()}</S.Column>
+            <S.Column>{formatDate(item.date)}</S.Column>
             <S.Column>{item.category}</S.Column>
             <S.Column>{item.title}</S.Column>
-            <S.Column>R$ {item.value.toFixed(2)}</S.Column>
+            <S.Column>R$ {item.value}</S.Column>
         </S.Row>
     );
 }
