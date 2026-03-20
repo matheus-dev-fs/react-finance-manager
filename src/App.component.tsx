@@ -32,7 +32,7 @@ const App = (): JSX.Element => {
             <GlobalStyle />
             <S.Container>
                 <Header />
-                <Body />
+                <Body filteredList={filteredList} />
             </S.Container>
         </>
     );

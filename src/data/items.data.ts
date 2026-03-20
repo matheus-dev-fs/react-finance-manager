@@ -1,8 +1,8 @@
 import { ItemListType } from "../types/item-list.type";
 
 export const items: ItemListType = [
-    { date: new Date(2026, 3, 15), category: 'food', title: 'McDonalds', value: 32.12 },
-    { date: new Date(2026, 3, 16), category: 'rent', title: 'Aluguel Apt', value: 2300 },
-    { date: new Date(2026, 3, 10), category: 'salary', title: 'Salário ACME', value: 4500 },
-    { date: new Date(2026, 4, 10), category: 'salary', title: 'Salário ACME', value: 4500 }
+    { date: new Date(2026, 2, 15), category: 'food', title: 'McDonalds', value: 32.12 },
+    { date: new Date(2026, 2, 16), category: 'rent', title: 'Aluguel Apt', value: 2300 },
+    { date: new Date(2026, 2, 10), category: 'salary', title: 'Salário ACME', value: 4500 },
+    { date: new Date(2026, 3, 10), category: 'salary', title: 'Salário ACME', value: 4500 }
 ];
