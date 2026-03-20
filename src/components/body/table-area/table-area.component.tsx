@@ -20,8 +20,8 @@ export const TableArea = ({ filteredList }: Props): JSX.Element => {
                 </tr>
             </thead>
             <tbody>
-                {filteredList.map((item: IItem, index: number): JSX.Element => (
-                    <TableItem key={index} item={item} />
+                {filteredList.map((item: IItem): JSX.Element => (
+                    <TableItem key={item.id} item={item} />
                 ))}
             </tbody>
         </S.Table>
