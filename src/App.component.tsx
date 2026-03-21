@@ -56,12 +56,17 @@ const App = (): JSX.Element => {
         setCurrentMonth(newMonth);
     }
 
+    const handleAddItem = (newItem: IItem): void => {
+        setList((prev: ItemListType): ItemListType => [...prev, newItem]);
+    };
+
     return (
-        <>
+        <> 
             <GlobalStyle />
             <S.Container>
                 <Header />
-                <Body 
+                <Body
+                    handleAddItem={handleAddItem}
                     filteredList={filteredList} 
                     currentMonth={currentMonth} 
                     income={income} 
