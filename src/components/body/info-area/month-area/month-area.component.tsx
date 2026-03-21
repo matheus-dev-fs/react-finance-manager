@@ -8,16 +8,6 @@ type Props = {
 }
 
 export const MonthArea = ({ currentMonth, onMonthChange }: Props): JSX.Element => {
-    const handlePreviousMonth = (): void => {
-        const date: string = handleMonthChange(false);
-        onMonthChange(date);
-    };
-
-    const handleNextMonth = (): void => {
-        const date: string = handleMonthChange(true);
-        onMonthChange(date);
-    };
-
     const handleMonthChange = (increase: boolean): string => {
         const yearAndMonth: string[] = currentMonth.split('-');
 
@@ -41,6 +31,16 @@ export const MonthArea = ({ currentMonth, onMonthChange }: Props): JSX.Element =
 
         return `${newYear}-${newMonth}`;
     }
+
+    const handlePreviousMonth = (): void => {
+        const date: string = handleMonthChange(false);
+        onMonthChange(date);
+    };
+
+    const handleNextMonth = (): void => {
+        const date: string = handleMonthChange(true);
+        onMonthChange(date);
+    };
 
     return (
         <S.Container>

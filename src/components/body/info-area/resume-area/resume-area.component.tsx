@@ -1,10 +1,18 @@
 import { JSX } from 'react';
 import * as S from './resume-area.styles';
+import { ResumeItem } from './resume-item/resume-item.component';
 
-export const ResumeArea = (): JSX.Element => {
+type Props = {
+    income: number;
+    expense: number;
+}
+
+export const ResumeArea = ({ income, expense }: Props): JSX.Element => {
   return (
     <S.Container>
-      <h1>Resume Area</h1>
+        <ResumeItem title="Receitas" value={income} />
+        <ResumeItem title="Despesas" value={expense} />
+        <ResumeItem title="Balanço" value={income - expense} />
     </S.Container>
   );
 }
