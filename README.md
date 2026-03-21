@@ -1,46 +1,69 @@
-# Getting Started with Create React App
+# React Finance Manager
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Aplicação de **controle financeiro pessoal** (entradas e saídas) feita com **React + TypeScript** durante o curso de React da **B7Web**.
 
-## Available Scripts
+O app permite navegar por meses, visualizar um resumo de **receitas** e **despesas**, listar os lançamentos do mês selecionado e **adicionar novos itens**.
 
-In the project directory, you can run:
+## Funcionalidades
 
-### `npm start`
+- Navegação por mês (mês atual por padrão)
+- Resumo do mês:
+  - **Receitas (Income)**
+  - **Despesas (Expense)**
+  - cálculo automático a partir dos itens filtrados do mês
+- Listagem de lançamentos do mês (tabela)
+- Cadastro de novo lançamento (data, categoria, título e valor)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Melhorias aplicadas no meu projeto
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- **Projeto 100% em TypeScript**
+  - Tipos e interfaces separados (`src/types` e `src/interfaces`)
+  - Melhor previsibilidade e manutenção do código
+- **Estrutura de pastas mais organizada**
+  - Componentes agrupados por contexto em `src/components/body/*` (info, inserção e tabela)
+- **Helpers reutilizáveis**
+  - Funções de data e formatação isoladas em `src/helpers/` (ex.: filtrar por mês, formatar data, formatar mês)
+- **IDs únicos para lançamentos**
+  - Os itens usam `uuid` (`v4()`) para gerar identificadores únicos
 
-### `npm test`
+## Como o projeto funciona (visão geral)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 1) Dados e categorias (mock)
+- Categorias ficam em `src/data/categories.data.ts` com:
+  - `title` (nome)
+  - `color` (cor usada na UI)
+  - `expense` (define se é despesa ou receita)
+- Itens iniciais ficam em `src/data/items.data.ts` (mock), cada item com:
+  - `id`, `date`, `category`, `title`, `value`
 
-### `npm run build`
+### 2) Filtro por mês + cálculos
+No `App`:
+- `list` guarda todos os lançamentos
+- `currentMonth` guarda o mês atual (`getCurrentMonth()`)
+- `filteredList` é recalculada sempre que `list` ou `currentMonth` mudam, usando `filterListByMonth`
+- `income` e `expense` são recalculados com base em `filteredList` e na flag `expense` da categoria
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 3) Componentes principais
+- `src/components/header/`  
+  Cabeçalho do sistema
+- `src/components/body/`  
+  Área principal do app, com:
+  - `info-area/` (navegação por mês + resumo)
+  - `insert-area/` (formulário para adicionar lançamento)
+  - `table-area/` (tabela de itens do mês + item da tabela)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Tecnologias
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- React
+- TypeScript
+- styled-components
+- uuid
 
-### `npm run eject`
+## Como rodar
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+npm install
+npm start
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Acesse: `http://localhost:3000`
