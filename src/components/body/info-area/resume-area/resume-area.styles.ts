@@ -1,0 +1,6 @@
+import styled from 'styled-components';
+
+export const Container = styled.div`
+    flex: 2;
+    display: flex;
+`;
