@@ -4,13 +4,14 @@ import * as S from './resume-item.styles';
 type Props = {
     title: string;
     value: number;
+    color?: string;
 }
 
-export const ResumeItem = ({ title, value }: Props): JSX.Element => {
+export const ResumeItem = ({ title, value, color }: Props): JSX.Element => {
   return (
     <S.Container>
         <S.Title>{title}</S.Title>
-        <S.Value>R$ {value}</S.Value>
+        <S.Value $color={color}>R$ {value}</S.Value>
     </S.Container>
   );
 }
