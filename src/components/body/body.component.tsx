@@ -6,12 +6,13 @@ import { InfoArea } from './info-area/info-area-component';
 
 type Props = {
     filteredList: ItemListType;
+    currentMonth: string;
 }
 
-export const Body = ({ filteredList }: Props): JSX.Element => {
+export const Body = ({ filteredList, currentMonth }: Props): JSX.Element => {
     return (
         <S.Container>
-            <InfoArea />
+            <InfoArea currentMonth={currentMonth} />
             <TableArea filteredList={filteredList} />
         </S.Container>
     );

@@ -1,5 +1,6 @@
 import { ItemListType } from "../types/item-list.type";
 import { IItem } from "../interfaces/item.interface";
+import { capitalizeFirstLetter } from "./string.helper";
 
 export const getCurrentMonth = (): string => {
     const now: Date = new Date();
@@ -29,4 +30,26 @@ export const formatDate = (date: Date): string => {
     const month: string = (date.getMonth() + 1).toString().padStart(2, '0');
     const day: string = date.getDate().toString().padStart(2, '0');
     return `${day}/${month}/${year}`;
+};
+
+export const formatCurrentMonth = (currentMonth: string): string => {
+    if (!currentMonth) {
+        return '';
+    }
+
+    const yearAndMonth: string[] = currentMonth.split('-');
+
+    if (yearAndMonth.length !== 2) {
+        return '';
+    }
+
+    const [year, month]: [
+        number, 
+        number
+    ] = [Number(yearAndMonth[0]), Number(yearAndMonth[1])];
+    const date: Date = new Date(year, month - 1, 1);
+    const monthName: string = date.toLocaleString('pt-BR', { month: 'long' });
+    const capitalizedMonthName: string = capitalizeFirstLetter(monthName);
+    
+    return `${capitalizedMonthName} ${year}`;
 };

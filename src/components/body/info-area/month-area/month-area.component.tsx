@@ -1,11 +1,16 @@
 import { JSX } from 'react';
 import * as S from './month-area.styles';
+import { formatCurrentMonth } from '../../../../helpers/date-filter.helper';
 
-export const MonthArea = (): JSX.Element => {
+type Props = {
+    currentMonth: string;
+}
+
+export const MonthArea = ({ currentMonth }: Props): JSX.Element => {
   return (
     <S.Container>
          <S.MonthArrow>⬅️</S.MonthArrow>
-         <S.MonthTitle>Janeiro 2024</S.MonthTitle>
+         <S.MonthTitle>{formatCurrentMonth(currentMonth)}</S.MonthTitle>
          <S.MonthArrow>➡️</S.MonthArrow>
     </S.Container>
   );
