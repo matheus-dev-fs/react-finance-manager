@@ -4,14 +4,49 @@ import { formatCurrentMonth } from '../../../../helpers/date-filter.helper';
 
 type Props = {
     currentMonth: string;
+    onMonthChange: (newMonth: string) => void;
 }
 
-export const MonthArea = ({ currentMonth }: Props): JSX.Element => {
-  return (
-    <S.Container>
-         <S.MonthArrow>⬅️</S.MonthArrow>
-         <S.MonthTitle>{formatCurrentMonth(currentMonth)}</S.MonthTitle>
-         <S.MonthArrow>➡️</S.MonthArrow>
-    </S.Container>
-  );
+export const MonthArea = ({ currentMonth, onMonthChange }: Props): JSX.Element => {
+    const handlePreviousMonth = (): void => {
+        const date: string = handleMonthChange(false);
+        onMonthChange(date);
+    };
+
+    const handleNextMonth = (): void => {
+        const date: string = handleMonthChange(true);
+        onMonthChange(date);
+    };
+
+    const handleMonthChange = (increase: boolean): string => {
+        const yearAndMonth: string[] = currentMonth.split('-');
+
+        if (yearAndMonth.length !== 2) {
+            return '';
+        }
+
+        const increaseValue: number = increase ? 1 : -1;
+
+        const [year, month]: [
+            number, 
+            number
+        ] = [Number(yearAndMonth[0]), Number(yearAndMonth[1])];
+        
+        const currentDate: Date = new Date(year, month - 1, 1);
+        
+        currentDate.setMonth(currentDate.getMonth() + increaseValue);
+
+        const newYear: number = currentDate.getFullYear();
+        const newMonth: number = currentDate.getMonth() + 1;
+
+        return `${newYear}-${newMonth}`;
+    }
+
+    return (
+        <S.Container>
+            <S.MonthArrow onClick={handlePreviousMonth}>⬅️</S.MonthArrow>
+            <S.MonthTitle>{formatCurrentMonth(currentMonth)}</S.MonthTitle>
+            <S.MonthArrow onClick={handleNextMonth}>➡️</S.MonthArrow>
+        </S.Container>
+    );
 }

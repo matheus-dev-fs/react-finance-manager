@@ -5,12 +5,13 @@ import { ResumeArea } from './resume-area/resume-area.component';
 
 type Props = {
     currentMonth: string;
+    onMonthChange: (newMonth: string) => void;
 }
 
-export const InfoArea = ({ currentMonth }: Props): JSX.Element => {
+export const InfoArea = ({ currentMonth, onMonthChange }: Props): JSX.Element => {
   return (
     <S.Container>
-      <MonthArea currentMonth={currentMonth} />
+      <MonthArea currentMonth={currentMonth} onMonthChange={onMonthChange} />
       <ResumeArea />
     </S.Container>
   );

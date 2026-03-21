@@ -27,12 +27,20 @@ const App = (): JSX.Element => {
         setFilteredList((prev: ItemListType): ItemListType => filterListByMonth(list, currentMonth));
     }, [list, currentMonth]);
 
+    const handleMonthChange = (newMonth: string): void => {
+        setCurrentMonth(newMonth);
+    }
+
     return (
         <>
             <GlobalStyle />
             <S.Container>
                 <Header />
-                <Body filteredList={filteredList} currentMonth={currentMonth} />
+                <Body 
+                    filteredList={filteredList} 
+                    currentMonth={currentMonth} 
+                    onMonthChange={handleMonthChange} 
+                />
             </S.Container>
         </>
     );
